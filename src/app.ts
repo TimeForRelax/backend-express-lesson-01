@@ -5,6 +5,7 @@ import { videosRouter } from './videos';
 import { db } from './db/db';
 
 export const app = express();
+
 app.use(express.json());
 app.use(cors());
 
