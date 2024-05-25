@@ -14,3 +14,11 @@ export const db: Record<'videos', VideosDataType[]> = {
     },
   ],
 };
+
+export const clearDB = () => {
+  db.videos = [];
+};
+
+export const setDB = (data: VideosDataType[]) => {
+  db.videos = data;
+};

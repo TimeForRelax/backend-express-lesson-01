@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.db = void 0;
+exports.setDB = exports.clearDB = exports.db = void 0;
 const videosType_1 = require("../types/videosType");
 exports.db = {
     videos: [
@@ -16,3 +16,11 @@ exports.db = {
         },
     ],
 };
+const clearDB = () => {
+    exports.db.videos = [];
+};
+exports.clearDB = clearDB;
+const setDB = (data) => {
+    exports.db.videos = data;
+};
+exports.setDB = setDB;

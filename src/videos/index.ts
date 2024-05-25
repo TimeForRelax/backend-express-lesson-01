@@ -6,6 +6,7 @@ import { updateVideosController } from './controllers/updateVideosController';
 
 export const videosRouter = Router();
 
+videosRouter.get('/', getVideosController);
 videosRouter.get('/:id', getVideosController);
 videosRouter.post('/', createVideosController);
 videosRouter.delete('/:id', deleteVideosController);

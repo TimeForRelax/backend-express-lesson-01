@@ -8,7 +8,7 @@ const getVideosController = (req, res) => {
     if (id) {
         const video = videos.find((video) => video.id === parseInt(id));
         if (!video) {
-            return res.status(404).send('Video not found');
+            return res.status(404).json({ message: 'Video not found' });
         }
         return res.status(200).json(video);
     }
