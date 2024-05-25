@@ -4,7 +4,7 @@ import { validateBody } from '../../validator/validateBody';
 
 export const updateVideosController = (
   req: Request,
-  res: Response<string | { errorsMessages: { message: string; field: string }[] }>,
+  res: Response<{ message: 'Video not found' } | { errorsMessages: { message: string; field: string }[] }>,
 ) => {
   const videos = db.videos;
 
@@ -14,7 +14,7 @@ export const updateVideosController = (
   const targetVideo = videos.find((video) => video.id === +id);
 
   if (!targetVideo) {
-    return res.status(404).send('Video not found');
+    return res.status(404).json({ message: 'Video not found' });
   }
 
   const errors = validateBody(body);
@@ -32,6 +32,11 @@ export const updateVideosController = (
     minAgeRestriction: body.minAgeRestriction || targetVideo.minAgeRestriction,
     publicationDate: body.publicationDate || targetVideo.publicationDate,
   };
+
+  const videoIndex = videos.findIndex((video) => video.id === +id);
+  if (videoIndex !== -1) {
+    videos[videoIndex] = updatedVideo;
+  }
 
   return res.sendStatus(204);
 };

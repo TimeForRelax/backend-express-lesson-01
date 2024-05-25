@@ -45,6 +45,8 @@ export const validateBody = (body: unknown): { message: string; field: string }[
   if (validatedBody.minAgeRestriction) {
     if (typeof validatedBody.minAgeRestriction !== 'number' || !Number.isInteger(validatedBody.minAgeRestriction)) {
       errors.push({ message: 'Min age restriction must be an integer', field: 'minAgeRestriction' });
+    } else if (validatedBody.minAgeRestriction < 1 || validatedBody.minAgeRestriction > 18) {
+      errors.push({ message: 'Min age restriction must be between 1 and 18', field: 'minAgeRestriction' });
     }
   }
 

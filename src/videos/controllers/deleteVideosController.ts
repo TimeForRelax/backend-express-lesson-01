@@ -8,10 +8,10 @@ export const deleteVideosController = (req: Request, res: Response) => {
   const videoIndex = videos.findIndex((video) => video.id === parseInt(id));
 
   if (videoIndex === -1) {
-    return res.status(404).send('Video not found');
+    return res.status(404).json({ message: 'Video not found' });
   }
 
   videos.splice(videoIndex, 1);
 
-  return res.status(204).send('Video deleted');
+  return res.sendStatus(204);
 };
