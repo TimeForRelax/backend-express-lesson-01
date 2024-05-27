@@ -21,10 +21,12 @@ export const validateBody = (body: unknown): { message: string; field: string }[
   }
 
   if (validatedBody.availableResolutions) {
-    const validResolutionsKeys = Object.keys(Resolutions);
+    const validResolutionsValues = Object.values(Resolutions);
+
     const invalidResolutions = validatedBody.availableResolutions.filter(
-      (res: string) => !validResolutionsKeys.includes(res),
+      (res: Resolutions) => !validResolutionsValues.includes(res),
     );
+
     if (invalidResolutions.length > 0) {
       errors.push({ message: 'Invalid resolutions provided', field: 'availableResolutions' });
     }
